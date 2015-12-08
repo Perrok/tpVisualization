@@ -31,8 +31,6 @@ if exist([dataFileName '.csv'], 'file')
     end
 end
 
-[fileNames(:).name]
-
 if ~exist('locations', 'var')|| isempty(locations), locations = rand(nbElements, 2); end
 if ~exist('colors', 'var'), colors = zeros(nbElements, 3); colors(:, 1)=1; end
 
@@ -43,7 +41,7 @@ figure(1)
 clf
 set(gca,'ButtonDownFcn',@displaySound);
 set(gcf,'WindowButtonUpFcn',@saveData);
-%set(gcf,'DeleteFcn',@saveData);
+set(gcf,'DeleteFcn',@saveData);
 userData.dataFileName = dataFileName;
 userData.playSound = playSound;
 userData.displayStyle = displayStyle;
@@ -115,7 +113,7 @@ end
 
 function saveData(hObject,~)
 
-userData = get(figure(1), 'userdata');
+userData = get(gcbo, 'userdata');
 
 t=findobj(gcf, 'type', 'hggroup');
 

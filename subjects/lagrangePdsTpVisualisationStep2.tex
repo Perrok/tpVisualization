@@ -1,0 +1,118 @@
+% Preview source code
+
+%% LyX 1.6.5 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+%\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath, url}
+\usepackage[hidelinks, colorlinks=true, 
+linkcolor=black, citecolor=blue]{hyperref} 
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{amsmath}
+\usepackage[left=3cm,top=2cm,right=3cm,nohead]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+
+%\renewcommand{\baselinestretch}{.96}
+
+\begin{document}
+
+\title{Classification and visualization of sounds\\ Session 2: Musical sounds}
+
+
+\author{Mathieu Lagrange}
+
+
+%\date{29 Janvier 2010}
+
+\maketitle
+\begin{center}
+This document, the Matlab scripts and the datasets are available here:
+
+ \url{http://www.irccyn.ec-nantes.fr/~lagrange/teaching/pds/tpVisualization} 
+
+\end{center}
+
+By convention, the  Matlab functions that are available as built-in or in the rastamat directory are in bold font.
+
+The "musicGenre" dataset is composed of 10 pairs of music clips. Each pair belong to a given genre: Blues, Classical, Country, Disco, Hip Hop, Jazz, Metal, Pop, Reggae, Rock.
+
+\section{Napping}
+
+\begin{enumerate}
+\item Download and decompress the "musicGenre" dataset
+\item Use the \textbf{napping} function to explore this dataset (clicking nearby a dot allows you to listen to the sound)
+\item organize the sounds on the 2D plane in order to have similar sounds that are close to each other and dissimilar sounds that distant.
+\item the locations that you set are stored in Comma Separated Value (CSV) file. Copy it to a file with a name containing the name of the dataset and your name.
+\end{enumerate}
+
+\section{Description}
+
+We aim at describing each sound with a set of descriptors, called features. Each features shall be computed on successive overlapping blocks.
+
+\begin{enumerate}
+\item decide which block size and overlapping factor to use
+\item implement the spectral centroid feature using the \textbf{spectrogram} function
+\item implement the Mel Frequency Cepstral Coefficients (MFCC)s. To this end, use the \textbf{audspec} and \textbf{spec2cep} functions. For each function, display and describe the second output argument.
+\item implement the beat histogram feature in order to model the rhythmic aspects of music. The beat histogram shall be computed as follows: split a spectrogram into 3 frequency bands: low, medium, high. For each band, perform a Fourier transform in order to identify the 3 dominant periodicities and store them in an histogram.
+\end{enumerate}
+
+\section{Visualization}
+\label{visu}
+
+\begin{enumerate}
+\item Perform a Principal Component Analysis (PCA) of the averaged MFCC features
+\item Get the coordinate of the sounds into a 2D place that maximizes the displayed feature variance
+\item Use the \textbf{napping} function to display this projection.
+\item Compare qualitatively and quantitatively the organization of the sounds in the "acoustical" plane and in the "human" one using the \textbf{daniels} function. 
+\end{enumerate}
+
+\section{Extra: classification}
+
+We aim at classifying the sounds into their corresponding classes. To do so, we consider a 1 Nearest Neighbor (1-NN) approach using the Euclidean distance. Perform the pooling operation over several texture windows. Prediction is done by majority voting over the several texture window. An example, suppose that your sound is of 12 frames and your texture window is of size 4, the 12 frames are averaged 4 by 4 to give 3 features. Those 3 features a compared to the computed features of the other sounds of the database. Suppose the predicted classes are {Rock, Pop, Rock}, a majority vote would choose for the Rock class.
+
+\begin{enumerate}
+\item For each feature, compute the prediction accuracy, that is the number of sound for which the closest sound is of the same class.
+\item Does a feature normalization improves the results ?
+\item For the MFCCs, shall the 1 coefficient be kept ?
+\item Which features gives the best accuracy ?
+\item Is it beneficial to combine features ?
+\end{enumerate}
+
+\section{Report}
+
+Please write a report using your favorite word processing tool and output a pdf file. The report shall have for each question a brief description about the way things have been done and some discussion about the resulting behavior.
+
+Send an archive containing the report, the code and the csv files no later than an hour after the end of the session to \texttt{mathieu.lagrange@cnrs.fr}, with the \texttt{[PDS]} flag within the title of the message.
+
+\appendix
+
+\section{Useful commands}
+
+
+\subsection{Miscellaneous}
+\begin{itemize}
+\item hist : histogram
+\item repmat : matrix replication
+\item imagesc : scaled matrix display
+\end{itemize}
+
+\subsection{Distance}
+\begin{itemize}
+\item pdist : pair wise distance computation
+\item squareform : convert output of pdist from vector to matrix
+\end{itemize}
+
+\subsection{Documentation}
+\begin{itemize}
+\item doc "command" : documentation of "command"
+\item lookfor "keyword" : show commands with "keyword" in the description
+\end{itemize}
+
+\end{document}
