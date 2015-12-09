@@ -71,16 +71,17 @@ We aim at describing each sound with a set of descriptors, called features. Each
 \begin{enumerate}
 \item Get the coordinate of the sounds into a 2D space using 2 of the features implemented. Generate a 'csv' file with per line, the 2 features and the color as 3 RGB values.
 \item Use the \textbf{napping} function to display this projection.
-\item Compare qualitatively the organization of the sounds in the "acoustical" plane and in the "human" one. Perform  a quantitative analysis using the \textbf{daniels} function. The daniels function takes two matrices of distance, and a number of permutation that in our case can be set to 1000 (see \url{http://statweb.stanford.edu/~susan/phylo/index/node64.html}).
+\item Compare qualitatively the organization of the sounds in the "acoustical" plane and in the "human" one. Perform  a quantitative analysis using a normalized correlation of vectorized version of the similarity matrices:
+\begin{equation}
+c(a, b) = \frac{ab'}{\sqrt{aa'. bb'}}
+\end{equation}
+\item Find the combination of features that correlates best with your reference.
+\item (Extra) implement the Mantel test in order to compute an alternative correlation indicator. 
 \end{enumerate}
 
-\section{Report}
 
-The report will be due at the end of the second session.
 
-Please write the report using your favorite word processing tool and output a pdf file. The report shall have for each question a brief description about the way things have been done and some discussion about the resulting behavior.
-
-\section{Extra: classification}
+\section{Classification}
 
 We aim at classifying the sounds into their corresponding classes. To do so, we consider a 1 Nearest Neighbor (1-NN) approach using the Euclidean distance. For each sound, the feature is the average in time of the feature set. That is, if a sound is analyzed into 23 frames, each represented using 2 coefficients, the resulting feature is a vector of size 2.
 
@@ -90,6 +91,14 @@ We aim at classifying the sounds into their corresponding classes. To do so, we 
 \item Which features gives the best accuracy ?
 \item Is it beneficial to combine features ?
 \end{enumerate}
+
+\section{Report}
+
+The report will be due at the end of the second session.
+
+Please write the report using your favorite word processing tool and output a pdf file. The report shall have for each question a brief description about the way things have been done and some discussion about the resulting behavior.
+
+Please add to the report the csv file that you created in Section 1.
 
 \appendix
 
