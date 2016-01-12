@@ -11,7 +11,7 @@ function napping(datasetPath, dataFileName, locations, displayStyle, playSound)
 % Copyright: Mathieu Lagrange
 
 if ~exist('datasetPath', 'var')  || isempty(datasetPath), datasetPath = '~/data/databases/environment/environmentalSounds'; end
-if ~exist('dataFileName', 'var') || isempty(dataFileName), dataFileName = ['napping' date() '_' getenv('USER') getenv('USERNAME')]; end
+if ~exist('dataFileName', 'var') || isempty(dataFileName), dataFileName = ['napping' date() '_' getenv('USER') getenv('USERNAME') '.csv']; end
 if ~exist('displayStyle', 'var') || isempty(displayStyle), displayStyle = 'none'; end
 if ~exist('playSound', 'var') || isempty(playSound), playSound = 1; end
 
@@ -23,8 +23,8 @@ if ~nbElements
     return
 end
 
-if exist([dataFileName '.csv'], 'file')
-    data = csvread([dataFileName '.csv']);
+if exist(dataFileName, 'file')
+    data = csvread(dataFileName);
     if size(data, 1)==nbElements
         locations = data(:, 1:2);
         colors = data(:, 3:end);
@@ -78,7 +78,7 @@ end
 [~, i] = min(d);
 
 fileName = get(t(i), 'userdata');
-[s, fs] = wavread(fileName);
+[s, fs] = audioread(fileName);
 
 switch(userData.displayStyle)
     case 'waveform'
@@ -131,6 +131,6 @@ data = [p color];
 
 data=data(ind, :);
 
-csvwrite([userData.dataFileName '.csv'], data);
+csvwrite(userData.dataFileName, data);
 disp('saved')
 
