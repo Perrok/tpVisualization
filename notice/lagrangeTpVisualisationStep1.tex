@@ -7,8 +7,8 @@
 \usepackage[latin9]{inputenc}
 \usepackage{amsthm}
 \usepackage{amsmath, url}
-\usepackage[hidelinks, colorlinks=true, 
-linkcolor=black, citecolor=blue]{hyperref} 
+\usepackage[hidelinks, colorlinks=true,
+linkcolor=black, citecolor=blue]{hyperref}
 
 \makeatletter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
@@ -36,13 +36,13 @@ Session 1: Environmental sounds}
 \begin{center}
 This document, the Matlab scripts and the datasets are available here:
 
- \url{http://www.irccyn.ec-nantes.fr/~lagrange/teaching/pds/tpVisualization} 
+ \url{https://github.com/mathieulagrange/tpVisualization}
 
 \end{center}
 
 By convention, the  Matlab functions that are available as built-in or in the rastamat directory are in bold font.
 
-The "environmentalSound" dataset is made of 8 pairs of sounds. Each pair belong to a given category: Bird, Dog, Door, Glass, Harp, Keyboard, Ping Pong, Traffic. 
+The "environmentalSound" dataset is made of 8 pairs of sounds. Each pair belong to a given category: Bird, Dog, Door, Glass, Harp, Keyboard, Ping Pong, Traffic.
 
 
 \section{Napping}
@@ -50,7 +50,7 @@ The "environmentalSound" dataset is made of 8 pairs of sounds. Each pair belong 
 \begin{enumerate}
 \item Download and decompress the "environmentalSound" dataset
 \item Use the \textbf{napping} function to explore this dataset (clicking nearby a dot allows you to listen to the sound)
-\item organize the sounds on the 2D plane in order to have similar sounds that are close to each other and dissimilar sounds that distant.
+\item organize the sounds on the 2D plane in order to have similar sounds that are close to each other and dissimilar sounds that are distant.
 \item the locations that you set are stored in Comma Separated Value (CSV) file. Copy it to a file with a name containing the name of the dataset and your name.
 \end{enumerate}
 
@@ -62,7 +62,7 @@ We aim at describing each sound with a set of descriptors, called features. Each
 \item decide which block size and overlapping factor to use
 \item implement the Zero Crossing Rate (ZCR) feature
 \item implement the spectral flatness feature. Use the \textbf{spectrogram} function.
-\item implement the tonal power ratio. to this end the tonal part of the frame is defined as local maxima of the magnitude spectrum that are above a given threshold 
+\item implement the tonal power ratio. to this end the tonal part of the frame is defined as local maxima of the magnitude spectrum that are above a given threshold
 \end{enumerate}
 
 \section{Visualization}
@@ -76,7 +76,7 @@ We aim at describing each sound with a set of descriptors, called features. Each
 c(a, b) = \frac{ab'}{\sqrt{aa'. bb'}}
 \end{equation}
 \item Find the combination of features that correlates best with your reference.
-\item (Extra) implement the Mantel test in order to compute an alternative correlation indicator. 
+\item (Extra) implement the Mantel test in order to compute an alternative correlation indicator.
 \end{enumerate}
 
 
